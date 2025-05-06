@@ -1,9 +1,11 @@
-import React from 'react'
+import { createTheme } from '@mui/material/styles';
 
-const theme = () => {
-  return (
-    <div>theme</div>
-  )
-}
+const lightTheme = createTheme({
+  palette: { mode: 'light' },
+});
 
-export default theme
+const darkTheme = createTheme({
+  palette: { mode: 'dark' },
+});
+
+export { lightTheme, darkTheme };
