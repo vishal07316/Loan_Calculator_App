@@ -30,7 +30,7 @@ const CurrencyConverter = () => {
       if (!emi || !selectedCurrency) return;
       try {
         const response = await axios.get(
-          `https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/USD`
+          `https://v6.exchangerate-api.com/v6/539849c6f09646251470c0f5/latest/USD`
         );
         const rate = response.data.conversion_rates[selectedCurrency];
         if (!rate) {
