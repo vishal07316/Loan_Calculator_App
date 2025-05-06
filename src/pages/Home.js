@@ -1,9 +1,13 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import LoanForm from '../components/LoanForm';
+import AmortizationTable from '../components/AmortizationTable';
+import CurrencyConverter from '../components/CurrencyConverter';
 
 const Home = () => (
   <div>
-    <Typography variant="h4">Loan Calculator</Typography>
+    <LoanForm />
+    <AmortizationTable />
+    <CurrencyConverter />
   </div>
 );
 

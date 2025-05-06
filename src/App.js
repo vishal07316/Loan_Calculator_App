@@ -1,18 +1,31 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import { lightTheme, darkTheme } from './theme';
+import { AppProvider, AppContext } from './context/AppContext';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './components/NotFound';
+import ThemeToggle from './components/ThemeToggle';
 
 const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
+    <AppProvider>
+      <AppContext.Consumer>
+        {({ themeMode }) => (
+          <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
+            <Router>
+              <ThemeToggle />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/about" component={About} />
+                <Route component={NotFound} />
+              </Switch>
+            </Router>
+          </ThemeProvider>
+        )}
+      </AppContext.Consumer>
+    </AppProvider>
   );
 };
 
