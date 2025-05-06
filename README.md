@@ -1,12 +1,23 @@
-# React + Vite
+# Loan Calculator App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a Loan Calculator App built with React, Vite, and Material UI as part of a technical assessment for Novel Office. The app allows users to calculate their loan EMI, view an amortization schedule, and convert the EMI into different currencies in real-time.
 
-Currently, two official plugins are available:
+## Live Demo
+[Loan Calculator App]( https://loan-calculator-q0t2tau3a-vishals-projects-14fbb5c2.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Calculate EMI based on loan amount, interest rate, and tenure.
+- View a paginated amortization schedule with monthly payment details.
+- Convert EMI to different currencies using the ExchangeRate-API.
+- Toggle between dark and light themes (persists across refreshes).
+- Responsive design with collapsible mobile navigation.
+- Error handling for API failures and invalid inputs.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/vishal07316/Loan_Calculator_App
+2. Install Dependencies:
+    use npm install
+3. Run Project:
+    use npm run dev

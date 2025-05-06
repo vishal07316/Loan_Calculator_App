@@ -13,7 +13,7 @@ const CurrencyConverter = () => {
   const [loading, setLoading] = useState(false);
   const theme = useTheme();
 
-  const API_KEY = import.meta.env.VITE_API_KEY;
+  const API_KEY = import.meta.env.VITE_API_KEY || '';
 
   useEffect(() => {
     if (!API_KEY) {
