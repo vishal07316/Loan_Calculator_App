@@ -5,9 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--mui-palette-background-default); /* Use theme background */
+  color: var(--mui-palette-text-primary); /* Use theme text color */
+  min-height: 100vh; /* Ensure full height */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Ensure no default backgrounds interfere */
+html, body, #root {
+  background-color: var(--mui-palette-background-default);
 }

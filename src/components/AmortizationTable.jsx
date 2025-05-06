@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, useTheme } from '@mui/material';
 import { AppContext } from '../context/AppContext';
 
 const AmortizationTable = () => {
   const { amortization } = useContext(AppContext);
   const [page, setPage] = React.useState(0);
   const rowsPerPage = 10;
+  const theme = useTheme();
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -14,15 +15,83 @@ const AmortizationTable = () => {
   if (!amortization.length) return null;
 
   return (
-    <TableContainer sx={{ maxWidth: '100%', overflowX: 'auto', p: { xs: 2, sm: 3 } }}>
+    <TableContainer
+      sx={{
+        maxWidth: { xs: '100%', sm: 600 }, // Match LoanForm width
+        mx: 'auto', // Center the table
+        overflowX: 'auto',
+        p: { xs: 1, sm: 2 },
+        bgcolor: 'background.paper',
+        borderRadius: 2,
+        ...(theme.palette.mode === 'dark'
+          ? {
+              border: '1px solid',
+              borderColor: 'text.secondary',
+              boxShadow: 'none',
+            }
+          : {
+              boxShadow: 1,
+            }),
+      }}
+    >
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Month</TableCell>
-            <TableCell>EMI</TableCell>
-            <TableCell>Principal</TableCell>
-            <TableCell>Interest</TableCell>
-            <TableCell>Balance</TableCell>
+            <TableCell
+              sx={{
+                color: 'text.primary',
+                fontSize: { xs: '0.8rem', sm: '1rem' },
+                p: { xs: 1, sm: 2 },
+                whiteSpace: 'nowrap', // Prevent text wrapping
+                width: '20%', // Approximate equal width for each column
+              }}
+            >
+              Month
+            </TableCell>
+            <TableCell
+              sx={{
+                color: 'text.primary',
+                fontSize: { xs: '0.8rem', sm: '1rem' },
+                p: { xs: 1, sm: 2 },
+                whiteSpace: 'nowrap',
+                width: '20%',
+              }}
+            >
+              EMI
+            </TableCell>
+            <TableCell
+              sx={{
+                color: 'text.primary',
+                fontSize: { xs: '0.8rem', sm: '1rem' },
+                p: { xs: 1, sm: 2 },
+                whiteSpace: 'nowrap',
+                width: '20%',
+              }}
+            >
+              Principal
+            </TableCell>
+            <TableCell
+              sx={{
+                color: 'text.primary',
+                fontSize: { xs: '0.8rem', sm: '1rem' },
+                p: { xs: 1, sm: 2 },
+                whiteSpace: 'nowrap',
+                width: '20%',
+              }}
+            >
+              Interest
+            </TableCell>
+            <TableCell
+              sx={{
+                color: 'text.primary',
+                fontSize: { xs: '0.8rem', sm: '1rem' },
+                p: { xs: 1, sm: 2 },
+                whiteSpace: 'nowrap',
+                width: '20%',
+              }}
+            >
+              Balance
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -30,11 +99,56 @@ const AmortizationTable = () => {
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row) => (
               <TableRow key={row.month}>
-                <TableCell>{row.month}</TableCell>
-                <TableCell>{row.emi}</TableCell>
-                <TableCell>{row.principal}</TableCell>
-                <TableCell>{row.interest}</TableCell>
-                <TableCell>{row.balance}</TableCell>
+                <TableCell
+                  sx={{
+                    color: 'text.primary',
+                    fontSize: { xs: '0.8rem', sm: '1rem' },
+                    p: { xs: 1, sm: 2 },
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {row.month}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: 'text.primary',
+                    fontSize: { xs: '0.8rem', sm: '1rem' },
+                    p: { xs: 1, sm: 2 },
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {row.emi}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: 'text.primary',
+                    fontSize: { xs: '0.8rem', sm: '1rem' },
+                    p: { xs: 1, sm: 2 },
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {row.principal}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: 'text.primary',
+                    fontSize: { xs: '0.8rem', sm: '1rem' },
+                    p: { xs: 1, sm: 2 },
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {row.interest}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    color: 'text.primary',
+                    fontSize: { xs: '0.8rem', sm: '1rem' },
+                    p: { xs: 1, sm: 2 },
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {row.balance}
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>
@@ -46,6 +160,7 @@ const AmortizationTable = () => {
         onPageChange={handleChangePage}
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[10]}
+        sx={{ color: 'text.primary', fontSize: { xs: '0.8rem', sm: '1rem' } }}
       />
     </TableContainer>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TextField, Button, Box, Typography } from '@mui/material';
+import { TextField, Button, Box, Typography, useTheme } from '@mui/material';
 import { AppContext } from '../context/AppContext';
 
 const LoanForm = () => {
@@ -8,9 +8,10 @@ const LoanForm = () => {
   const [interestRate, setInterestRate] = useState('');
   const [loanTenure, setLoanTenure] = useState('');
   const [error, setError] = useState('');
+  const theme = useTheme(); // Access the current theme
 
   const calculateEMI = () => {
-    setError(''); // Clear previous errors
+    setError('');
     const P = parseFloat(loanAmount);
     const R = parseFloat(interestRate) / 12 / 100;
     const N = parseFloat(loanTenure);
@@ -34,7 +35,7 @@ const LoanForm = () => {
         emi: emi.toFixed(2),
         principal: principal.toFixed(2),
         interest: interest.toFixed(2),
-        balance: Math.max(balance, 0).toFixed(2), // Ensure balance doesn't go negative
+        balance: Math.max(balance, 0).toFixed(2),
       });
     }
     setAmortization(schedule);
@@ -50,8 +51,26 @@ const LoanForm = () => {
   };
 
   return (
-    <Box sx={{ p: { xs: 2, sm: 3 }, maxWidth: { xs: '100%', sm: 600 }, mx: 'auto' }}>
-      <Typography variant="h5" gutterBottom>
+    <Box
+      sx={{
+        p: { xs: 2, sm: 3 },
+        maxWidth: { xs: '100%', sm: 600 },
+        mx: 'auto',
+        bgcolor: 'background.paper',
+        borderRadius: 2,
+        // Conditionally apply border or shadow based on theme mode
+        ...(theme.palette.mode === 'dark'
+          ? {
+              border: '1px solid',
+              borderColor: 'text.secondary', // Slightly off-white border in dark mode
+              boxShadow: 'none', // Remove shadow in dark mode
+            }
+          : {
+              boxShadow: 1, // Keep shadow in light mode
+            }),
+      }}
+    >
+      <Typography variant="h5" gutterBottom color="text.primary">
         Loan EMI Calculator
       </Typography>
       {error && (
@@ -67,6 +86,26 @@ const LoanForm = () => {
         fullWidth
         margin="normal"
         inputProps={{ min: 0 }}
+        sx={{
+          bgcolor: 'background.paper',
+          '& .MuiInputBase-input': {
+            color: 'text.primary',
+          },
+          '& .MuiInputLabel-root': {
+            color: 'text.secondary',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'text.secondary',
+            },
+            '&:hover fieldset': {
+              borderColor: 'text.primary',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main',
+            },
+          },
+        }}
       />
       <TextField
         label="Annual Interest Rate (%)"
@@ -76,6 +115,26 @@ const LoanForm = () => {
         fullWidth
         margin="normal"
         inputProps={{ min: 0 }}
+        sx={{
+          bgcolor: 'background.paper',
+          '& .MuiInputBase-input': {
+            color: 'text.primary',
+          },
+          '& .MuiInputLabel-root': {
+            color: 'text.secondary',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'text.secondary',
+            },
+            '&:hover fieldset': {
+              borderColor: 'text.primary',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main',
+            },
+          },
+        }}
       />
       <TextField
         label="Loan Tenure (Months)"
@@ -85,12 +144,32 @@ const LoanForm = () => {
         fullWidth
         margin="normal"
         inputProps={{ min: 0 }}
+        sx={{
+          bgcolor: 'background.paper',
+          '& .MuiInputBase-input': {
+            color: 'text.primary',
+          },
+          '& .MuiInputLabel-root': {
+            color: 'text.secondary',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'text.secondary',
+            },
+            '&:hover fieldset': {
+              borderColor: 'text.primary',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main',
+            },
+          },
+        }}
       />
       <Box sx={{ mt: 2 }}>
         <Button variant="contained" onClick={calculateEMI} sx={{ mr: 2 }}>
           Calculate EMI
         </Button>
-        <Button variant="outlined" onClick={resetForm}>
+        <Button variant="outlined" onClick={resetForm} sx={{ color: 'text.primary', borderColor: 'text.primary' }}>
           Reset
         </Button>
       </Box>
