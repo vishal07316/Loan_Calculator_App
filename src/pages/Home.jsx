@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import LoanForm from '../components/LoanForm';
+import AmortizationTable from '../components/AmortizationTable';
+import CurrencyConverter from '../components/CurrencyConverter';
 
-const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+const Home = () => (
+  <div>
+    <LoanForm />
+    <AmortizationTable />
+    <CurrencyConverter />
+  </div>
+);
 
-export default Home
+export default Home;
