@@ -1,10 +1,15 @@
-import React from 'react';
-import { Typography } from '@mui/material';
+import React, { createContext, useState } from 'react';
 
-const AppContext = () => (
-  <div>
-    <Typography variant="h5">AppContext</Typography>
-  </div>
-);
+export const AppContext = createContext();
 
-export default AppContext;
+export const AppProvider = ({ children }) => {
+  const [emi, setEMI] = useState(null);
+  const [amortization, setAmortization] = useState([]);
+  const [themeMode, setThemeMode] = useState('light');
+
+  return (
+    <AppContext.Provider value={{ emi, setEMI, amortization, setAmortization, themeMode, setThemeMode }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
